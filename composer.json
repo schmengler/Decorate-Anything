@@ -1,0 +1,21 @@
+{
+    "name": "sgh/decorate-anything",
+    "type": "library",
+    "description": "Abstract decorator class",
+    "keywords": [],
+    "homepage": "http://www.sgh-it.eu",
+    "version": "1.0.0",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Fabian Schmengler",
+            "email": "fschmengler@sgh-it.eu"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.6"
+    },
+    "autoload": {
+        "files": ["DecorateAnything/decorateanything.lib.php"]
+    }
+}
