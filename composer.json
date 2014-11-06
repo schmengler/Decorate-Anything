@@ -4,7 +4,7 @@
     "description": "Abstract decorator class",
     "keywords": [],
     "homepage": "http://www.sgh-it.eu",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "license": "BSD",
     "authors": [
         {
@@ -13,9 +13,9 @@
         }
     ],
     "require": {
-        "php": ">=5.2.6"
+        "php": ">=5.3"
     },
     "autoload": {
-        "files": ["DecorateAnything/decorateanything.lib.php"]
+        "psr-4": {"SGH\\DecorateAnything\\": "src/"}
     }
 }

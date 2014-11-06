@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Simplified implementation of the Decorator Design Pattern.
  * Sub classes of AbstractDecorator may be used to decorate any objects.
@@ -15,8 +14,12 @@
  * @license BSD
  * @link http://creativecommons.org/licenses/BSD/
  * @link http://en.wikipedia.org/wiki/Decorator_pattern
- * @version 1.0
+ * @version 2.0
  */
+
+namespace SGH\DecorateAnything;
+
+use \InvalidArgumentException;
 
 /**
  * Abstract Decorator class
@@ -36,7 +39,7 @@
  * 	}
  * }
  * 
- * class ConcreteDecorator extends AbstractDecorator
+ * class ConcreteDecorator extends \SGH\DecorateAnything\Decorator
  * {
  * 	const COMPONENT_CLASS = 'ConcreteComponent';
  * 	public function foo()
@@ -80,7 +83,7 @@
  * 		echo "ConcreteComponent::bar($x,$y)\n";
  * 	}
  * }
- * class ConcreteDecorator extends AbstractDecorator implements IConcreteComponent
+ * class ConcreteDecorator extends \SGH\DecorateAnything\Decorator implements IConcreteComponent
  * {
  * 	const COMPONENT_CLASS = 'ConcreteComponent';
  * 	public function foo()
@@ -97,18 +100,18 @@
  * 
  * @package Decorate Anything
  * @author Fabian Schmengler <fschmengler@sgh-it.eu>
- * @copyright &copy; SGH informationstechnologie UG
+ * @copyright &copy; SGH informationstechnologie UG 2014
  * @license BSD
  * @link http://creativecommons.org/licenses/BSD/
  * @access public
  * @example example.php Concrete example
  */
-abstract class AbstractDecorator
+abstract class Decorator
 {
 	/**
 	 * @var object Object of type COMPONENT_CLASS or according decorator
 	 * @access private
-	 * @see AbstractDecorator::COMPONENT_CLASS
+	 * @see \SGH\DecorateAnything\Decorator::COMPONENT_CLASS
 	 */
 	private $component;
 	
@@ -128,11 +131,11 @@ abstract class AbstractDecorator
 	 * 	{
 	 * 		...
 	 * 	}
-	 * 	class Decorator1 extends AbstractDecorator
+	 * 	class Decorator1 extends \SGH\DecorateAnything\Decorator
 	 * 	{
 	 * 		...
 	 * 	}
-	 * 	class Decorator2 extends AbstractDecorator
+	 * 	class Decorator2 extends \SGH\DecorateAnything\Decorator
 	 * 	{
 	 * 		...
 	 * 	}
@@ -140,19 +143,19 @@ abstract class AbstractDecorator
 	 * </code>
 	 * 
 	 * @param object $component Object of type COMPONENT_CLASS or according decorator
-	 * @see AbstractDecorator::COMPONENT_CLASS
+	 * @see \SGH\DecorateAnything\Decorator::COMPONENT_CLASS
 	 * @return void
 	 */
 	public function __construct($component)
 	{
-		$type = constant(get_class($this) . '::COMPONENT_CLASS');
+		$type = static::COMPONENT_CLASS;
 		if ($type) {
 			if ($component instanceof $type) {
 				$this->component = $component;
 				return;
 			}
 			if ($component instanceof self) {
-				if ($type == constant(get_class($component) . '::COMPONENT_CLASS')) {
+				if ($type == static::COMPONENT_CLASS) {
 					$this->component = $component;
 					return;
 				}

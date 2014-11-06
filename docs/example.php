@@ -1,5 +1,5 @@
 <?php
-require 'decorateanything.lib.php';
+require_once __DIR__ . '/../src/Decorator.php';
 
 class Text
 {
@@ -24,7 +24,7 @@ class Text
 	}
 }
 
-class TextBoldDecorator extends AbstractDecorator
+class TextBoldDecorator extends \SGH\DecorateAnything\Decorator
 {
 	const COMPONENT_CLASS = 'Text';
 	public function draw()
@@ -35,7 +35,7 @@ class TextBoldDecorator extends AbstractDecorator
 	}
 }
 
-class TextItalicDecorator extends AbstractDecorator
+class TextItalicDecorator extends \SGH\DecorateAnything\Decorator
 {
 	const COMPONENT_CLASS = 'Text';
 	public function draw()
